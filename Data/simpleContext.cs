@@ -9,16 +9,15 @@ namespace simple.Data
 {
     public class simpleContext : DbContext
     {
-        public simpleContext (DbContextOptions<simpleContext> options)
+        public simpleContext(DbContextOptions<simpleContext> options)
             : base(options)
         {
         }
 
+        // Mantener TODOS los DbSet de main y agregar BibliotecaLibro
         public DbSet<Articulo> Articulo { get; set; } = default!;
+        public DbSet<BibliotecaLibro> BibliotecaLibros { get; set; } = default!;
         public DbSet<ContabilidadFactura> ContabilidadFacturas { get; set; } = default!;
-
         public DbSet<SecretariaGeneralDocumento> SecretariaGeneralDocumentos { get; set; } = default!;
-
-        
     }
 }
