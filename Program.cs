@@ -14,6 +14,7 @@ if (string.IsNullOrWhiteSpace(url))
     Console.WriteLine($"DATABASE estaba vacío, usando appsettings: {url}");
 }
 
+// ✅ Configurar DbContext con PostgreSQL
 builder.Services.AddDbContext<simpleContext>(options =>
     options.UseNpgsql(url));
 
@@ -27,7 +28,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-using(var scope = app.Services.CreateScope())
+// ✅ Aplicar migraciones automáticamente al iniciar
+using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<simpleContext>();
     db.Database.Migrate();
@@ -47,3 +49,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+    
