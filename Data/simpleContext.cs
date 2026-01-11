@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using simple.Entidades;
+using simple.Models;
 
 namespace simple.Data
 {
@@ -14,12 +15,15 @@ namespace simple.Data
         {
         }
 
-        // Mantener TODOS los DbSet de main y agregar BibliotecaLibro
+        
         public DbSet<Articulo> Articulo { get; set; } = default!;
         public DbSet<BibliotecaLibro> BibliotecaLibros { get; set; } = default!;
         public DbSet<ContabilidadFactura> ContabilidadFacturas { get; set; } = default!;
         public DbSet<SecretariaGeneralDocumento> SecretariaGeneralDocumentos { get; set; } = default!;
         public DbSet<BecasEstudiante> BecasEstudiantes { get; set; } = default!;
 
+        
+        public DbSet<ProduccionContenido> ProduccionContenidos { get; set; } = default!;
     }
 }
+
