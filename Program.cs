@@ -1,10 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using simple.Data;
+
 var url = Environment.GetEnvironmentVariable("DATABASE");
 Console.WriteLine($"La cadena de coneccion es esta: {url}");
 
 var builder = WebApplication.CreateBuilder(args);
+
+// ✅ AGREGADO: fallback a appsettings.json si DATABASE viene vacío
+if (string.IsNullOrWhiteSpace(url))
+{
+    url = builder.Configuration.GetConnectionString("simpleContext");
+    Console.WriteLine($"DATABASE estaba vacío, usando appsettings: {url}");
+}
+
 builder.Services.AddDbContext<simpleContext>(options =>
     options.UseNpgsql(url));
 

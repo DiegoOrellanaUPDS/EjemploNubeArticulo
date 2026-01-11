@@ -14,6 +14,8 @@ namespace simple.Data
         {
         }
 
-        public DbSet<simple.Entidades.Articulo> Articulo { get; set; } = default!;
+        public DbSet<Articulo> Articulo { get; set; } = default!;
+        public DbSet<ContabilidadFactura> ContabilidadFacturas { get; set; } = default!;
+        
     }
 }
