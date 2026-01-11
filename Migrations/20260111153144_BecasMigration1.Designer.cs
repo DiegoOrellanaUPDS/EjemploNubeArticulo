@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using simple.Data;
@@ -11,9 +12,11 @@ using simple.Data;
 namespace simple.Migrations
 {
     [DbContext(typeof(simpleContext))]
-    partial class simpleContextModelSnapshot : ModelSnapshot
+    [Migration("20260111153144_BecasMigration1")]
+    partial class BecasMigration1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,6 @@ namespace simple.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            // Articulo
             modelBuilder.Entity("simple.Entidades.Articulo", b =>
                 {
                     b.Property<int>("Id")
@@ -47,8 +49,7 @@ namespace simple.Migrations
                     b.ToTable("Articulo");
                 });
 
-            // BibliotecaLibro (tu entidad)
-            modelBuilder.Entity("simple.Entidades.BibliotecaLibro", b =>
+            modelBuilder.Entity("simple.Entidades.BecasEstudiante", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,30 +57,36 @@ namespace simple.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AnioPublicacion")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Autor")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool>("Disponible")
+                    b.Property<bool>("BecaActiva")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Editorial")
+                    b.Property<string>("Carrera")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Titulo")
+                    b.Property<string>("CodigoEstudiante")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("FechaInicioBeca")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<decimal>("MontoMensualBeca")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("NombreCompleto")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("TipoBeca")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("BibliotecaLibros");
+                    b.ToTable("BecasEstudiantes");
                 });
 
-            // ContabilidadFactura
             modelBuilder.Entity("simple.Entidades.ContabilidadFactura", b =>
                 {
                     b.Property<int>("Id")
@@ -102,6 +109,10 @@ namespace simple.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Observacion")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<bool>("Pagada")
                         .HasColumnType("boolean");
 
@@ -110,7 +121,6 @@ namespace simple.Migrations
                     b.ToTable("ContabilidadFacturas");
                 });
 
-            // SecretariaGeneralDocumento
             modelBuilder.Entity("simple.Entidades.SecretariaGeneralDocumento", b =>
                 {
                     b.Property<int>("Id")
@@ -141,7 +151,6 @@ namespace simple.Migrations
 
                     b.ToTable("SecretariaGeneralDocumentos");
                 });
-
 #pragma warning restore 612, 618
         }
     }

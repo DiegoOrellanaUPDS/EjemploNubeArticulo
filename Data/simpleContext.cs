@@ -19,5 +19,7 @@ namespace simple.Data
         public DbSet<BibliotecaLibro> BibliotecaLibros { get; set; } = default!;
         public DbSet<ContabilidadFactura> ContabilidadFacturas { get; set; } = default!;
         public DbSet<SecretariaGeneralDocumento> SecretariaGeneralDocumentos { get; set; } = default!;
+        public DbSet<BecasEstudiante> BecasEstudiantes { get; set; } = default!;
+
     }
 }
