@@ -26,6 +26,7 @@ namespace simple.Data
 
         public DbSet<ProduccionContenido> ProduccionContenidos { get; set; } = default!;
         public DbSet<ContabilidadUsuario> ContabilidadUsuarios { get; set; } = default!;
+        public DbSet<FacultadIngenieriaCarrera> FacultadIngenieriaCarreras { get; set; } = default!;
     }
 }
 

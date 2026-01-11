@@ -22,6 +22,48 @@ namespace simple.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("EjemploNubeArticulo.Models.ContabilidadUsuario", b =>
+                {
+                    b.Property<int>("CON_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CON_Id"));
+
+                    b.Property<bool>("CON_Activo")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("CON_Departamento")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CON_Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CON_FechaRegistro")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CON_Nombre")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CON_Rol")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("CON_Salario")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("CON_Telefono")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("CON_Id");
+
+                    b.ToTable("ContabilidadUsuarios");
+                });
+
             modelBuilder.Entity("simple.Entidades.Articulo", b =>
                 {
                     b.Property<int>("Id")
@@ -178,6 +220,36 @@ namespace simple.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SecretariaGeneralDocumentos");
+                });
+
+            modelBuilder.Entity("simple.Models.FacultadIngenieriaCarrera", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateOnly>("FechaCreacion")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Modalidad")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Semestres")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FacultadIngenieriaCarreras");
                 });
 
             modelBuilder.Entity("simple.Models.ProduccionContenido", b =>
