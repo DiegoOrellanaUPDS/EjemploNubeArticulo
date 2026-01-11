@@ -19,6 +19,6 @@ namespace simple.Data
 
         public DbSet<SecretariaGeneralDocumento> SecretariaGeneralDocumentos { get; set; } = default!;
 
-        
+        public DbSet<BecasEstudiante> BecasEstudiantes { get; set; } = default!;
     }
 }
