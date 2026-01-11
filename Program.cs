@@ -5,6 +5,11 @@ var url = Environment.GetEnvironmentVariable("DATABASE");
 Console.WriteLine($"La cadena de coneccion es esta: {url}");
 
 var builder = WebApplication.CreateBuilder(args);
+if (string.IsNullOrEmpty(url))
+{
+    url = builder.Configuration.GetConnectionString("simpleContext");
+}
+
 builder.Services.AddDbContext<simpleContext>(options =>
     options.UseNpgsql(url));
 
@@ -18,7 +23,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-using(var scope = app.Services.CreateScope())
+using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<simpleContext>();
     db.Database.Migrate();

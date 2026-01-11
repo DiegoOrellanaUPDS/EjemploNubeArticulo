@@ -9,11 +9,13 @@ namespace simple.Data
 {
     public class simpleContext : DbContext
     {
-        public simpleContext (DbContextOptions<simpleContext> options)
+        public simpleContext(DbContextOptions<simpleContext> options)
             : base(options)
         {
         }
 
         public DbSet<simple.Entidades.Articulo> Articulo { get; set; } = default!;
+        public DbSet<BibliotecaLibro> BibliotecaLibros { get; set; } = default!;
+
     }
 }
