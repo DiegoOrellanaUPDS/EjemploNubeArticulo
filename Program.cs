@@ -19,7 +19,7 @@ builder.Services.AddDbContext<simpleContext>(options =>
     options.UseNpgsql(url));
 
 // Add services to the container.
-builder.WebHost.UseUrls("http://0.0.0.0:8080");
+builder.WebHost.UseUrls("http://localhost:5000");
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

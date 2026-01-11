@@ -22,7 +22,8 @@ namespace simple.Data
         public DbSet<SecretariaGeneralDocumento> SecretariaGeneralDocumentos { get; set; } = default!;
         public DbSet<BecasEstudiante> BecasEstudiantes { get; set; } = default!;
 
-        
+        public DbSet<ModalidadGrado> ModalidadesGrado { get; set; } = default!;
+
         public DbSet<ProduccionContenido> ProduccionContenidos { get; set; } = default!;
     }
 }
