@@ -1,15 +1,21 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace simple.Models
 {
     public class ProduccionContenido
     {
-        public int Id {get;set;}
-        public string? Titulo {get; set;}
-        public string? Descripcion {get; set;}
-        public string? Plataforma {get;set;}
-        public DateTime FechaPublicacion {get;set;}
-        public string? Encargado {get;set;}
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        public string Titulo { get; set; } = string.Empty;
+
+        public string TipoFormato { get; set; } = string.Empty; // Ej: Video, Podcast
+
+        public int DuracionMinutos { get; set; }
+
+        public DateTime FechaCreacion { get; set; } = DateTime.UtcNow;
+
+        public bool EsPublicado { get; set; }
     }
 }
