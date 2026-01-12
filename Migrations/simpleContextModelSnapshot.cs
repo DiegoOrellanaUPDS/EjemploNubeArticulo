@@ -42,7 +42,7 @@ namespace simple.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CON_FechaRegistro")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("date");
 
                     b.Property<string>("CON_Nombre")
                         .IsRequired()

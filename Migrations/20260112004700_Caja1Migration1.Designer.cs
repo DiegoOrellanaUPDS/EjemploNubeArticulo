@@ -12,13 +12,8 @@ using simple.Data;
 namespace simple.Migrations
 {
     [DbContext(typeof(simpleContext))]
-<<<<<<<< Updated upstream:Migrations/20260111235453_ConsisteciaArchivos1.Designer.cs
-    [Migration("20260111235453_ConsisteciaArchivos1")]
-    partial class ConsisteciaArchivos1
-========
-    [Migration("20260112001107_CajaMigration1")]
-    partial class CajaMigration1
->>>>>>>> Stashed changes:Migrations/20260112001107_CajaMigration1.Designer.cs
+    [Migration("20260112004700_Caja1Migration1")]
+    partial class Caja1Migration1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,7 +45,7 @@ namespace simple.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CON_FechaRegistro")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("date");
 
                     b.Property<string>("CON_Nombre")
                         .IsRequired()

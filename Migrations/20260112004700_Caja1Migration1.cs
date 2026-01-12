@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace simple.Migrations
 {
     /// <inheritdoc />
-    public partial class CajaMigration1 : Migration
+    public partial class Caja1Migration1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -83,6 +83,22 @@ namespace simple.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ConsistenciaArchivos",
+                columns: table => new
+                {
+                    Id_Archivo = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nombre = table.Column<string>(type: "text", nullable: false),
+                    Tipo = table.Column<string>(type: "text", nullable: false),
+                    Fecha_Creacion = table.Column<DateOnly>(type: "date", nullable: false),
+                    Estado = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ConsistenciaArchivos", x => x.Id_Archivo);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ContabilidadFacturas",
                 columns: table => new
                 {
@@ -98,6 +114,26 @@ namespace simple.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ContabilidadFacturas", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContabilidadUsuarios",
+                columns: table => new
+                {
+                    CON_Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CON_Nombre = table.Column<string>(type: "text", nullable: false),
+                    CON_Email = table.Column<string>(type: "text", nullable: false),
+                    CON_Rol = table.Column<string>(type: "text", nullable: false),
+                    CON_FechaRegistro = table.Column<DateTime>(type: "date", nullable: false),
+                    CON_Departamento = table.Column<string>(type: "text", nullable: false),
+                    CON_Telefono = table.Column<string>(type: "text", nullable: false),
+                    CON_Activo = table.Column<bool>(type: "boolean", nullable: false),
+                    CON_Salario = table.Column<decimal>(type: "numeric", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContabilidadUsuarios", x => x.CON_Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -151,7 +187,13 @@ namespace simple.Migrations
                 name: "CajaFacturas");
 
             migrationBuilder.DropTable(
+                name: "ConsistenciaArchivos");
+
+            migrationBuilder.DropTable(
                 name: "ContabilidadFacturas");
+
+            migrationBuilder.DropTable(
+                name: "ContabilidadUsuarios");
 
             migrationBuilder.DropTable(
                 name: "ProduccionContenidos");
