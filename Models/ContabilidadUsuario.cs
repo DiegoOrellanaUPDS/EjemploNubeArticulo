@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace EjemploNubeArticulo.Models
+namespace simple.Models
 {
     public class ContabilidadUsuario
     {
