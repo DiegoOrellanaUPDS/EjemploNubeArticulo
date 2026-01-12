@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace EjemploNubeArticulo.Models
+namespace simple.Models
 {
     public class RegistroEstudiante
     {
@@ -24,7 +24,6 @@ namespace EjemploNubeArticulo.Models
         [StringLength(50)]
         public string Carrera { get; set; } = string.Empty;
 
-        [Required]
         public DateTime FechaRegistro { get; set; } = DateTime.Now;
 
         [Range(1, 10)]

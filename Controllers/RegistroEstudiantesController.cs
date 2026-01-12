@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using EjemploNubeArticulo.Data;
-using EjemploNubeArticulo.Models;
+using simple.Data;
+using simple.Models;
 
-namespace EjemploNubeArticulo.Controllers
+namespace simple.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -16,14 +16,11 @@ namespace EjemploNubeArticulo.Controllers
             _context = context;
         }
 
-        // POST: api/RegistroEstudiantes
         [HttpPost]
         public async Task<ActionResult<RegistroEstudiante>> PostRegistroEstudiante(RegistroEstudiante estudiante)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             _context.RegistroEstudiantes.Add(estudiante);
             await _context.SaveChangesAsync();
@@ -31,13 +28,6 @@ namespace EjemploNubeArticulo.Controllers
             return CreatedAtAction(nameof(PostRegistroEstudiante), 
                 new { id = estudiante.Id }, 
                 estudiante);
-        }
-
-        // GET: api/RegistroEstudiantes (opcional para probar)
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<RegistroEstudiante>>> GetRegistroEstudiantes()
-        {
-            return await _context.RegistroEstudiantes.ToListAsync();
         }
     }
 }
