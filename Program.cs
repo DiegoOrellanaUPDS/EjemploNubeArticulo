@@ -9,21 +9,11 @@ var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
 
 // Configurar DbContext con Npgsql
 builder.Services.AddDbContext<simpleContext>(options =>
-    options.UseNpgsql(connectionString, npgsqlOptions =>
-    {
-        npgsqlOptions.EnableRetryOnFailure(); // Intentar reconectar en caso de fallo
-    }));
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("MyApp", policyBuilder =>
-    {
-        policyBuilder.AllowAnyOrigin();
-        policyBuilder.AllowAnyHeader();
-        policyBuilder.AllowAnyMethod();
-    });
-});
+    options.UseNpgsql(url));
 
-// Añadir controladores, Swagger y la API de endpoints
+// Add services to the container.
+builder.WebHost.UseUrls("http://0.0.0.0:8080");
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

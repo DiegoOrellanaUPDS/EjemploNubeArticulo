@@ -45,7 +45,7 @@ namespace simple.Data
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
 
-
+        
         public DbSet<ProduccionContenido> ProduccionContenidos { get; set; } = default!;
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
