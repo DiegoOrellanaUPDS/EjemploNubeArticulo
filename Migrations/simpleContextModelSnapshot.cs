@@ -108,7 +108,7 @@ namespace simple.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("FechaInicioBeca")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("date");
 
                     b.Property<decimal>("MontoMensualBeca")
                         .HasColumnType("numeric");
@@ -198,7 +198,7 @@ namespace simple.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("FechaEmision")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("date");
 
                     b.Property<decimal>("MontoTotal")
                         .HasColumnType("numeric");
@@ -228,7 +228,7 @@ namespace simple.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("FechaEmision")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("date");
 
                     b.Property<string>("NumeroDocumento")
                         .IsRequired()
@@ -250,6 +250,42 @@ namespace simple.Migrations
                     b.ToTable("SecretariaGeneralDocumentos");
                 });
 
+            modelBuilder.Entity("simple.Models.CajaFactura", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("FechaFactura")
+                        .HasColumnType("date");
+
+                    b.Property<decimal>("Impuesto")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("NumeroFactura")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Observaciones")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("SubTotal")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CajaFacturas");
+                });
+
             modelBuilder.Entity("simple.Models.ProduccionContenido", b =>
                 {
                     b.Property<int>("Id")
@@ -265,7 +301,7 @@ namespace simple.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<DateTime>("FechaCreacion")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("date");
 
                     b.Property<string>("TipoFormato")
                         .IsRequired()
