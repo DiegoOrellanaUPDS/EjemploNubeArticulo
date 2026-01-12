@@ -22,13 +22,39 @@ namespace simple.Data
         public DbSet<SecretariaGeneralDocumento> SecretariaGeneralDocumentos { get; set; } = default!;
         public DbSet<BecasEstudiante> BecasEstudiantes { get; set; } = default!;
 
-
         public DbSet<RectoradoAutoridad> RectoradoAutoridades { get; set; }= default!;
+
+
+
         public DbSet<ProduccionContenido> ProduccionContenidos { get; set; } = default!;
 
         public DbSet<ProduccionContenido> ProduccionContenido { get; set; } = default!;
         public DbSet<ContabilidadUsuario> ContabilidadUsuarios { get; set; } = default!;
         public DbSet<ConsistenciaArchivo> ConsistenciaArchivos { get; set; } = default!;
+
+
+
+        public DbSet<CajaFactura> CajaFacturas { get; set; } = default!;
+
+        //Para valores de fechas en Postgres
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Recorre todas las entidades y propiedades DateTime
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                foreach (var property in entityType.GetProperties())
+                {
+                    // Si la propiedad es DateTime o DateTime?
+                    if (property.ClrType == typeof(DateTime) || property.ClrType == typeof(DateTime?))
+                    {
+                        property.SetColumnType("date"); // Se guarda como "date" en PostgreSQL
+                    }
+                }
+            }
+        }
 
     }
 }

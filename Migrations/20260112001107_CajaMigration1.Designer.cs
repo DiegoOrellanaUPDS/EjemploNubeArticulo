@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using simple.Data;
@@ -11,9 +12,16 @@ using simple.Data;
 namespace simple.Migrations
 {
     [DbContext(typeof(simpleContext))]
-    partial class simpleContextModelSnapshot : ModelSnapshot
+<<<<<<<< Updated upstream:Migrations/20260111235453_ConsisteciaArchivos1.Designer.cs
+    [Migration("20260111235453_ConsisteciaArchivos1")]
+    partial class ConsisteciaArchivos1
+========
+    [Migration("20260112001107_CajaMigration1")]
+    partial class CajaMigration1
+>>>>>>>> Stashed changes:Migrations/20260112001107_CajaMigration1.Designer.cs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -314,38 +322,6 @@ namespace simple.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProduccionContenidos");
-                });
-
-            modelBuilder.Entity("simple.Models.RectoradoAutoridad", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Cargo")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("EmailInstitucional")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("FechaInicioGestion")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("NombreCompleto")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("TituloAcademico")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RectoradoAutoridades");
                 });
 #pragma warning restore 612, 618
         }

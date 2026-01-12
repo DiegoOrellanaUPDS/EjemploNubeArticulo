@@ -1,46 +1,59 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using simple.Data;
 
-var url = Environment.GetEnvironmentVariable("DATABASE");
-Console.WriteLine($"La cadena de coneccion es esta: {url}");
-
 var builder = WebApplication.CreateBuilder(args);
+//builder.WebHost.UseUrls("http://0.0.0.0:8080");
+// Obtener la cadena de conexión desde las variables de entorno
+var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
+                       ?? builder.Configuration.GetConnectionString("simpleContext");
 
-// ✅ fallback a appsettings.json si DATABASE viene vacío
-if (string.IsNullOrWhiteSpace(url))
-{
-    url = builder.Configuration.GetConnectionString("simpleContext");
-    Console.WriteLine($"DATABASE estaba vacío, usando appsettings: {url}");
-}
-
-// ✅ Configurar DbContext con PostgreSQL
+// Configurar DbContext con Npgsql
 builder.Services.AddDbContext<simpleContext>(options =>
-    options.UseNpgsql(url));
+    options.UseNpgsql(connectionString, npgsqlOptions =>
+    {
+        npgsqlOptions.EnableRetryOnFailure(); // Intentar reconectar en caso de fallo
+    }));
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyApp", policyBuilder =>
+    {
+        policyBuilder.AllowAnyOrigin();
+        policyBuilder.AllowAnyHeader();
+        policyBuilder.AllowAnyMethod();
+    });
+});
 
-// Add services to the container.
-builder.WebHost.UseUrls("http://0.0.0.0:8080");
-
+// Añadir controladores, Swagger y la API de endpoints
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Aplicar migraciones automáticamente al iniciar
+// Aplicar migraciones al iniciar la aplicación
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<simpleContext>();
-    db.Database.Migrate();
+    var dbContext = scope.ServiceProvider.GetRequiredService<simpleContext>();
+    try
+    {
+        dbContext.Database.Migrate(); // Aplica migraciones si no existen
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Error aplicando migraciones: " + ex.Message);
+    }
 }
-
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
+    //c.RoutePrefix = string.Empty; // Esto hace que Swagger esté en la raíz (puedes ajustarlo si necesitas otro lugar)
+});
 
+// Middleware
+app.UseCors("MyApp");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+
 app.Run();
