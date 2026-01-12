@@ -209,6 +209,38 @@ namespace simple.Migrations
 
                     b.ToTable("ProduccionContenidos");
                 });
+
+            modelBuilder.Entity("simple.Models.RectoradoAutoridad", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Cargo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("EmailInstitucional")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("FechaInicioGestion")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("NombreCompleto")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("TituloAcademico")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RectoradoAutoridades");
+                });
 #pragma warning restore 612, 618
         }
     }
