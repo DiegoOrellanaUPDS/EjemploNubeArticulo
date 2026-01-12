@@ -21,23 +21,53 @@ namespace simple.Data
 
         
         public DbSet<Articulo> Articulo { get; set; } = default!;
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
         public DbSet<BibliotecaLibro> BibliotecaLibros { get; set; } = default!;
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
         public DbSet<ContabilidadFactura> ContabilidadFacturas { get; set; } = default!;
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
         public DbSet<SecretariaGeneralDocumento> SecretariaGeneralDocumentos { get; set; } = default!;
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
         public DbSet<BecasEstudiante> BecasEstudiantes { get; set; } = default!;
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
 <<<<<<< HEAD
 =======
 
         public DbSet<RectoradoAutoridad> RectoradoAutoridades { get; set; }= default!;
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
 
 
 
 >>>>>>> 11ee6010fb6a713065f7df63c1be1f98b3c78ddf
         public DbSet<ProduccionContenido> ProduccionContenidos { get; set; } = default!;
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
 
         public DbSet<ProduccionContenido> ProduccionContenido { get; set; } = default!;
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
         public DbSet<ContabilidadUsuario> ContabilidadUsuarios { get; set; } = default!;
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
         public DbSet<ConsistenciaArchivo> ConsistenciaArchivos { get; set; } = default!;
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
 <<<<<<< HEAD
 =======
 
@@ -45,6 +75,9 @@ namespace simple.Data
 
 >>>>>>> 11ee6010fb6a713065f7df63c1be1f98b3c78ddf
         public DbSet<CajaFactura> CajaFacturas { get; set; } = default!;
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
+    public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
 
         //Para valores de fechas en Postgres
 
