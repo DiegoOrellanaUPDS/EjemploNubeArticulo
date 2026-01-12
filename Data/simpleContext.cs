@@ -1,6 +1,5 @@
-<<<<<<< HEAD
+
 using EjemploNubeArticulo.Models;
-=======
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,8 +39,6 @@ namespace simple.Data
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
-<<<<<<< HEAD
-=======
 
         public DbSet<RectoradoAutoridad> RectoradoAutoridades { get; set; }= default!;
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
@@ -49,8 +46,6 @@ namespace simple.Data
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
 
 
-
->>>>>>> 11ee6010fb6a713065f7df63c1be1f98b3c78ddf
         public DbSet<ProduccionContenido> ProduccionContenidos { get; set; } = default!;
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
@@ -68,12 +63,8 @@ namespace simple.Data
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
-<<<<<<< HEAD
-=======
 
 
-
->>>>>>> 11ee6010fb6a713065f7df63c1be1f98b3c78ddf
         public DbSet<CajaFactura> CajaFacturas { get; set; } = default!;
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
     public DbSet<RegistroEstudiante> RegistroEstudiantes { get; set; }
@@ -98,10 +89,6 @@ namespace simple.Data
                 }
             }
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> 11ee6010fb6a713065f7df63c1be1f98b3c78ddf
     }
 }
 
