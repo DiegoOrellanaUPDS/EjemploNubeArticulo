@@ -22,10 +22,9 @@ namespace simple.Data
         public DbSet<ContabilidadFactura> ContabilidadFacturas { get; set; } = default!;
         public DbSet<SecretariaGeneralDocumento> SecretariaGeneralDocumentos { get; set; } = default!;
         public DbSet<BecasEstudiante> BecasEstudiantes { get; set; } = default!;
-
-
         public DbSet<ProduccionContenido> ProduccionContenidos { get; set; } = default!;
         public DbSet<ContabilidadUsuario> ContabilidadUsuarios { get; set; } = default!;
+        public DbSet<ConsistenciaArchivo> ConsistenciaArchivos { get; set; } = default!;
     }
 }
 

@@ -12,8 +12,8 @@ using simple.Data;
 namespace simple.Migrations
 {
     [DbContext(typeof(simpleContext))]
-    [Migration("20260111205021_MigracionFinalBeymar")]
-    partial class MigracionFinalBeymar
+    [Migration("20260111235453_ConsisteciaArchivos1")]
+    partial class ConsisteciaArchivos1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,48 @@ namespace simple.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("EjemploNubeArticulo.Models.ContabilidadUsuario", b =>
+                {
+                    b.Property<int>("CON_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CON_Id"));
+
+                    b.Property<bool>("CON_Activo")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("CON_Departamento")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CON_Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CON_FechaRegistro")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CON_Nombre")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CON_Rol")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("CON_Salario")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("CON_Telefono")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("CON_Id");
+
+                    b.ToTable("ContabilidadUsuarios");
+                });
 
             modelBuilder.Entity("simple.Entidades.Articulo", b =>
                 {
@@ -116,6 +158,34 @@ namespace simple.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BibliotecaLibros");
+                });
+
+            modelBuilder.Entity("simple.Entidades.ConsistenciaArchivo", b =>
+                {
+                    b.Property<int>("Id_Archivo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id_Archivo"));
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateOnly>("Fecha_Creacion")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id_Archivo");
+
+                    b.ToTable("ConsistenciaArchivos");
                 });
 
             modelBuilder.Entity("simple.Entidades.ContabilidadFactura", b =>
