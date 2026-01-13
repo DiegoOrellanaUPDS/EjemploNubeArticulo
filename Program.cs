@@ -1,49 +1,61 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using simple.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-//builder.WebHost.UseUrls("http://0.0.0.0:8080");
-// Obtener la cadena de conexión desde las variables de entorno
-var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
-                       ?? builder.Configuration.GetConnectionString("simpleContext");
 
-// Configurar DbContext con Npgsql
+// =========================
+// CONFIGURAR BASE DE DATOS
+// =========================
 builder.Services.AddDbContext<simpleContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    )
+);
 
-// Add services to the container.
-builder.WebHost.UseUrls("http://0.0.0.0:8080");
-
+// =========================
+// SERVICIOS
+// =========================
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// =========================
+// PUERTO
+// =========================
+builder.WebHost.UseUrls("http://localhost:8080");
+
 var app = builder.Build();
 
-// Aplicar migraciones al iniciar la aplicación
+// =========================
+// APLICAR MIGRACIONES
+// =========================
 using (var scope = app.Services.CreateScope())
 {
-    var dbContext = scope.ServiceProvider.GetRequiredService<simpleContext>();
-    try
-    {
-        dbContext.Database.Migrate(); // Aplica migraciones si no existen
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine("Error aplicando migraciones: " + ex.Message);
-    }
+    var db = scope.ServiceProvider.GetRequiredService<simpleContext>();
+    db.Database.Migrate();
 }
-app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
-    //c.RoutePrefix = string.Empty; // Esto hace que Swagger esté en la raíz (puedes ajustarlo si necesitas otro lugar)
-});
 
-// Middleware
-app.UseCors("MyApp");
+// =========================
+// MIDDLEWARE
+// =========================
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 app.UseHttpsRedirection();
 app.UseAuthorization();
+
+// =========================
+// RUTA RAÍZ
+// =========================
+app.MapGet("/", () => "API funcionando correctamente");
+
+// =========================
+// CONTROLADORES
+// =========================
 app.MapControllers();
 
 app.Run();
+
