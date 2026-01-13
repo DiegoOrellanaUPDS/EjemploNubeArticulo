@@ -9,7 +9,7 @@ var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
 
 // Configurar DbContext con Npgsql
 builder.Services.AddDbContext<simpleContext>(options =>
-    options.UseNpgsql(url));
+    options.UseNpgsql(connectionString));
 
 // Add services to the container.
 builder.WebHost.UseUrls("http://0.0.0.0:8080");
