@@ -29,6 +29,7 @@ namespace simple.Data
         public DbSet<ContabilidadUsuario> ContabilidadUsuarios { get; set; } = default!;
         public DbSet<ConsistenciaArchivo> ConsistenciaArchivos { get; set; } = default!;
         public DbSet<CajaFactura> CajaFacturas { get; set; } = default!;
+        public DbSet<ExtunivTaller> ExtunivTalleres { get; set; } = default!;
 
         //Para valores de fechas en Postgres
 
